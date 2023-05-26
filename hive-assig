@@ -1,0 +1,70 @@
+
+
+a. Calculate total sales per year:
+
+```sql
+SELECT year, SUM(sales) AS total_sales
+FROM sales_order_orc
+GROUP BY year;
+```
+
+b. Find a product for which maximum orders were placed:
+
+```sql
+SELECT product, COUNT(*) AS order_count
+FROM sales_order_orc
+GROUP BY product
+ORDER BY order_count DESC
+LIMIT 1;
+```
+
+c. Calculate the total sales for each quarter:
+
+```sql
+SELECT quarter, SUM(sales) AS total_sales
+FROM sales_order_orc
+GROUP BY quarter;
+```
+
+d. In which quarter sales were minimum:
+
+```sql
+SELECT quarter
+FROM sales_order_orc
+GROUP BY quarter
+ORDER BY SUM(sales)
+LIMIT 1;
+```
+
+e. In which country sales were maximum and in which country sales were minimum:
+
+```sql
+SELECT country, SUM(sales) AS total_sales
+FROM sales_order_orc
+GROUP BY country
+ORDER BY total_sales DESC
+LIMIT 1;
+
+SELECT country, SUM(sales) AS total_sales
+FROM sales_order_orc
+GROUP BY country
+ORDER BY total_sales
+LIMIT 1;
+```
+
+f. Calculate quarterly sales for each city:
+
+```sql
+SELECT quarter, city, SUM(sales) AS total_sales
+FROM sales_order_orc
+GROUP BY quarter, city;
+```
+
+h. Find a month for each year in which the maximum number of quantities were sold:
+
+```sql
+SELECT year, month, MAX(quantity) AS max_quantity
+FROM sales_order_orc
+GROUP BY year, month;
+```
+
